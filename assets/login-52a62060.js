@@ -1,0 +1,1 @@
+import{g as n,c as s,h as t,o as _,_ as c}from"./index-1f0bb105.js";const a=n({__name:"login",setup(p){const o=()=>{t.push("/home")};return(r,e)=>(_(),s("div",{class:"box",onClick:e[0]||(e[0]=l=>o())}," 点击登录 "))}});const m=c(a,[["__scopeId","data-v-7368bce2"]]);export{m as default};
