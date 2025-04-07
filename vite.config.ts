@@ -15,6 +15,9 @@ export default defineConfig({
       symbolId: 'icon-[name]'
     })
   ],
+  base: process.env.NODE_ENV === 'production'
+    ? '/demo/'  // 例如 `/my-vite-app/`
+    : '/',            // 开发环境用根路径
   resolve: {
     alias: {
       '@': resolve('src')
