@@ -16,6 +16,16 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/home/index.vue')
   },
   {
+    path: '/privilege',
+    name: 'Privilege',
+    component: () => import('@/views/privilege/index.vue')
+  },
+  {
+    path: '/my',
+    name: 'My',
+    component: () => import('@/views/my/index.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () =>
