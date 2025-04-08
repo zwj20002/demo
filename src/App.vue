@@ -7,7 +7,13 @@
     @click-left="router.back()"
   /> -->
   <router-view />
-    <van-tabbar v-model="active" active-color="#FF8503" route style="background-color:#F7F7FA;border-top: 1px solid #ccc;"> 
+  <van-tabbar 
+    v-if="showTabbar" 
+    v-model="active" 
+    active-color="#FF8503" 
+    route 
+    style="background-color:#F7F7FA;border-top: 1px solid #ccc;"
+  > 
     <van-tabbar-item replace to="/home">
       <span>首页</span>
       <template #icon="props">
@@ -16,7 +22,7 @@
     </van-tabbar-item>
     <van-tabbar-item replace to="/privilege">
       <span>特权</span>
-      <template #icon="props" >
+      <template #icon="props">
         <img :src="props.active ? icon[1].active : icon[1].inactive" />
       </template>
     </van-tabbar-item>
@@ -30,7 +36,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
 const active = ref(0);
 const icon = [
   {
@@ -46,6 +55,11 @@ const icon = [
     inactive: "http://0806gc.62.hzgqapp.com/static/tarbar/icon_3.png",
   },
 ];
+
+const showTabbar = computed(() => {
+  const currentPath = route.path;
+  return ['/home', '/privilege', '/my'].includes(currentPath);
+});
 
 // import { computed } from 'vue'
 // import { useRoute, useRouter } from 'vue-router'

@@ -20,11 +20,11 @@
       </div>
       <div class="two">开通特权享受专属福利</div>
       <div class="three">
-        <div class="item">
+        <div class="item" @click="goMoney">
           <div class="font">奖励钱包</div>
           <div class="num">0.00</div>
         </div>
-        <div class="item">
+        <div class="item" @click="goWithdrawal">
           <div class="font">普通会员<span>待返</span></div>
           <div class="num">0.00</div>
         </div>
@@ -67,14 +67,14 @@
         </div>
         <div class="rg"><img src="/src/assets/下载.png" alt="" /></div>
       </div>
-      <div class="func-item">
+      <div class="func-item" @click="goAdvice">
         <div class="lf">
           <div class="icon"><img src="/src/assets/l_3.png" alt="" /></div>
           <div class="tile">意见反馈</div>
         </div>
         <div class="rg"><img src="/src/assets/下载.png" alt="" /></div>
       </div>
-      <div class="func-item">
+      <div class="func-item" @click="goSeting">
         <div class="lf">
           <div class="icon"><img src="/src/assets/l_4.png" alt="" /></div>
           <div class="tile">设置</div>
@@ -84,7 +84,26 @@
     </div>
   </div>
 </template>
-<script setup></script>
+<script setup>
+import { useRouter } from "vue-router";
+const router = useRouter();
+  const goWithdrawal = () => {
+    // 跳转到提现页面
+    router.push("/withdrawal");
+  };
+  const goSeting = () => {
+    // 跳转到设置页面
+    router.push("/seeting");
+  };
+  const goAdvice = () => {
+    // 跳转到意见反馈页面
+    router.push("/advice");
+  };
+  const goMoney = () => {
+    // 跳转到奖励钱包页面
+    router.push("/money");
+  };
+</script>
 <style scoped lang="less">
 .my {
   .top-bg {
@@ -223,9 +242,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 0;
+      padding: 15px 0;
       border-bottom: 1px solid #f4f4f4;
-
       .lf {
         display: flex;
         align-items: center;
