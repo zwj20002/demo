@@ -93,6 +93,11 @@
   .banner {
     position: relative;
     z-index: -1;
+    img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
   }
   .sub-content {
     padding: 0 20px;
