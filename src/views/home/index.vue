@@ -57,7 +57,7 @@
             </div>
             <div class="resiger">注册时间：2025-04-07</div>
           </div>
-          <div class="rg">
+          <div class="rg" @click="showBottom = true">
             <div class="level">前往升级</div>
           </div>
         </div>
@@ -83,13 +83,36 @@
         </div>
       </div>
     </div>
+
+    <!-- popup弹窗 -->
+    <div class="pay-popup">
+      <van-popup
+        v-model:show="showBottom"
+        round
+        position="bottom"
+        closeable
+      >
+      <div class="content">
+        <div class="title">特权等级</div>
+        <div class="vip-list">
+          <div class="list-item" @click="active = index" :class="{ active: active === index }" v-for="item,index in ['普通会员','高级会员','特级会员']" :key="index">{{ item }}</div>
+        </div>
+      <div class="footer">确定</div>
+      </div>
+    </van-popup>
+    </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+const showBottom = ref(false);
+const active = ref(0);
+</script>
 
 <style lang="less" scoped>
 .container {
+  padding-bottom: 30px;
   .banner {
     position: relative;
     z-index: -1;
@@ -188,8 +211,7 @@
             font-size: 20px;
             font-weight: 700;
             margin-top: 10px;
-          color: #333333;
-
+            color: #333333;
           }
         }
       }
@@ -197,7 +219,7 @@
     .sales {
       margin-top: 20px;
       width: 100%;
-      background-color: #FFFBF6;
+      background-color: #fffbf6;
       border: 1px solid #f9d6a8;
       border-radius: 10px;
       padding: 15px;
@@ -241,6 +263,43 @@
 .notice-swipe {
   height: 40px;
   line-height: 40px;
+}
+.pay-popup {
+  .content {
+    padding: 20px;
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .vip-list {
+      .list-item {
+        padding: 15px 0;
+        text-align: center;
+        border-radius: 20px;
+        background-color: #F8F8F8;
+        font-size: 14px;
+        margin: 25px;
+      }
+      .active {
+          background-color: #FFF0DF;
+          color: #FF8503;
+          border: 1px solid #FF8503;
+        }
+    }
+    .footer {
+      margin-top: 30px;
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ff8503;
+      color: #fff;
+      border-radius: 20px;
+      font-size: 16px;
+    }
+  }
 }
 ::v-deep(.van-notice-bar) {
   border: 1px solid #f9d6a8;
