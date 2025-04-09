@@ -86,20 +86,40 @@
 
     <!-- popup弹窗 -->
     <div class="pay-popup">
-      <van-popup
-        v-model:show="showBottom"
-        round
-        position="bottom"
-        closeable
-      >
-      <div class="content">
-        <div class="title">特权等级</div>
-        <div class="vip-list">
-          <div class="list-item" @click="active = index" :class="{ active: active === index }" v-for="item,index in ['普通会员','高级会员','特级会员']" :key="index">{{ item }}</div>
+      <van-popup v-model:show="showBottom" round position="bottom" closeable>
+        <div class="content">
+          <div class="title">特权等级</div>
+          <div class="vip-list">
+            <div
+              class="list-item"
+              @click="active = index"
+              :class="{ active: active === index }"
+              v-for="(item, index) in ['普通会员', '高级会员', '特级会员']"
+              :key="index"
+            >
+              {{ item }}
+            </div>
+          </div>
+          <div class="footer" @click="showPay = true">确定</div>
         </div>
-      <div class="footer">确定</div>
-      </div>
-    </van-popup>
+      </van-popup>
+    </div>
+
+    <!-- 支付弹窗 -->
+    <div class="zhifu">
+      <van-popup v-model:show="showPay" round position="bottom" closeable>
+        <div class="content">
+          <div class="top">￥498.00</div>
+          <div class="pay-list">
+            <div class="lf">
+              <div class="icon"></div>
+              <div class="font">微信支付</div>
+            </div>
+            <div class="rg"></div>
+          </div>
+          <div class="footer">立即支付</div>
+        </div>
+      </van-popup>
     </div>
   </div>
 </template>
@@ -107,6 +127,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 const showBottom = ref(false);
+const showPay = ref(false);
 const active = ref(0);
 </script>
 
@@ -278,19 +299,73 @@ const active = ref(0);
         padding: 15px 0;
         text-align: center;
         border-radius: 20px;
-        background-color: #F8F8F8;
+        background-color: #f8f8f8;
         font-size: 14px;
         margin: 25px;
       }
       .active {
-          background-color: #FFF0DF;
-          color: #FF8503;
-          border: 1px solid #FF8503;
-        }
+        background-color: #fff0df;
+        color: #ff8503;
+        border: 1px solid #ff8503;
+      }
     }
     .footer {
       margin-top: 30px;
       height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ff8503;
+      color: #fff;
+      border-radius: 20px;
+      font-size: 16px;
+    }
+  }
+}
+.zhifu {
+  .content {
+    padding: 50px 20px 30px;
+    .top {
+      text-align: center;
+      background-color: #f5f5f5;
+      padding: 30px 0;
+      color: #e11717;
+      font-size: 18px;
+      font-weight: 700;
+      border-radius: 10px;
+    }
+    .pay-list {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #f7f7f7;
+      padding: 20px 0;
+      margin-top: 15px;
+      .lf {
+        display: flex;
+        align-items: center;
+        .icon {
+          width: 15px;
+          height: 15px;
+          background: url("/src/assets/下载\ \(1\).png") no-repeat center;
+          background-size: 100% 100%;
+        }
+        .font {
+          font-size: 14px;
+          font-weight: 700;
+          margin-left: 5px;
+        }
+      }
+      .rg {
+        background: url("/src/assets/下载\ \(2\).png") no-repeat center;
+        background-size: 100% 100%;
+        width: 15px;
+        height: 15.5px;
+      }
+    }
+    .footer {
+      margin-top: 50px;
+      height: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
